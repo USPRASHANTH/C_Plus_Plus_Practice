@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Heap">
+      <UniqueIdentifier>{2de74eae-c1d6-4b4c-a71e-30c7d120474c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\BinaryTree">
+      <UniqueIdentifier>{68c22bd6-dd59-4fe9-9974-b1528f1da42f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\LinkedList">
+      <UniqueIdentifier>{b9012d91-739a-4fc0-8528-950571b72001}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Algorithms">
+      <UniqueIdentifier>{87e4dbe5-afc3-47e3-8621-7a4777c7286d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\AdvancedDataStructures">
+      <UniqueIdentifier>{68f521a9-fb4b-4957-acf3-38b2d391a4eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\DynamicProgramming">
+      <UniqueIdentifier>{ea311405-778f-4213-83fa-59ebacf85e73}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CPP_Code.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MinHeap.cpp">
+      <Filter>Source Files\Heap</Filter>
+    </ClCompile>
+    <ClCompile Include="HeapSort.cpp">
+      <Filter>Source Files\Heap</Filter>
+    </ClCompile>
+    <ClCompile Include="KthLargestUsingMinHeap.cpp">
+      <Filter>Source Files\Heap</Filter>
+    </ClCompile>
+    <ClCompile Include="BinaryTree.cpp">
+      <Filter>Source Files\BinaryTree</Filter>
+    </ClCompile>
+    <ClCompile Include="LinkedList.cpp">
+      <Filter>Source Files\LinkedList</Filter>
+    </ClCompile>
+    <ClCompile Include="DoublyLinkedList.cpp">
+      <Filter>Source Files\LinkedList</Filter>
+    </ClCompile>
+    <ClCompile Include="Miscellaneous.cpp">
+      <Filter>Source Files\Algorithms</Filter>
+    </ClCompile>
+    <ClCompile Include="QuickSort.cpp">
+      <Filter>Source Files\Algorithms</Filter>
+    </ClCompile>
+    <ClCompile Include="SegmentTree.cpp">
+      <Filter>Source Files\AdvancedDataStructures</Filter>
+    </ClCompile>
+    <ClCompile Include="SetOne.cpp">
+      <Filter>Source Files\DynamicProgramming</Filter>
+    </ClCompile>
+    <ClCompile Include="BitMagic.cpp">
+      <Filter>Source Files\Algorithms</Filter>
+    </ClCompile>
+    <ClCompile Include="BackTracking.cpp">
+      <Filter>Source Files\Algorithms</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
