@@ -58,6 +58,36 @@ private:
         return resultPointer;
         //*/
     }
+
+    LinkedList GetLinkedListNode(int data, LinkedList* next)
+    {
+        LinkedList node;
+        node.data = data;
+        node.next = next;
+
+        return node;
+    }
+
+    int AddNumbersInternal(LinkedList* n1, LinkedList* n2, LinkedList** result, int& sum, int& carry)
+    {
+        if (n1 == NULL)
+        {
+            return 0;
+        }
+
+        AddNumbersInternal(n1->next, n2->next, result, sum, carry);
+
+        sum = n1->data + n2->data + carry;
+        carry = sum / 10;
+        sum = sum % 10;
+
+        LinkedList* node = new LinkedList();
+        node->data = sum;
+        node->next = (*result);
+        (*result) = node;
+
+        return carry;
+    }
 public:
     void ReverseLinkedList(LinkedList** head)
     {
@@ -169,6 +199,81 @@ public:
         }
 
         return slow == fast;
+    }
+
+    // https://leetcode.com/problems/add-two-numbers-ii/
+    LinkedList* AddNumbers(LinkedList* n1, LinkedList* n2)
+    {
+        int len1 = GetLength(n1);
+        int len2 = GetLength(n2);
+
+        if (len1 > len2)
+        {
+            int diff = len1 - len2;
+            for (int i = 0; i < diff; i++)
+            {
+                LinkedList* node = new LinkedList();
+                node->data = 0;
+                node->next = n2;
+                n2 = node;
+            }
+        }
+        else if (len2 > len1)
+        {
+            int diff = len2 - len1;
+            for (int i = 0; i < diff; i++)
+            {
+                LinkedList* node = new LinkedList();
+                node->data = 0;
+                node->next = n1;
+                n1 = node;
+            }
+        }
+
+        int sum = 0;
+        int carry = 0;
+        LinkedList* result = NULL;
+        carry = AddNumbersInternal(n1, n2, &result, sum, carry);
+
+        if (carry > 0)
+        {
+            LinkedList* node = new LinkedList();
+            node->data = carry;
+            node->next = result;
+            result = node;
+        }
+
+        return result;
+    }
+
+    LinkedList* GetLinkedList(int number)
+    {
+        LinkedList* head = NULL;
+
+        while (number != 0)
+        {
+            LinkedList* node = new LinkedList();
+            node->data = number % 10;
+            node->next = head;
+            head = node;
+
+            number = number / 10;
+        }
+
+        return head;
+    }
+
+    void PrintLinkedListNumber(LinkedList* head)
+    {
+        LinkedList* current = head;
+        cout << "LinkedList number = ";
+        while (current != NULL)
+        {
+            cout << current->data;
+            current = current->next;
+        }
+
+        cout << endl;
     }
 
     void PrintLinkedListContents(LinkedList* head)

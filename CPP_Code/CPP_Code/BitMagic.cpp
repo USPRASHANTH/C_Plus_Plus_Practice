@@ -122,4 +122,36 @@ public:
 
         return result;
     }
+
+    // https://leetcode.com/problems/counting-bits/
+    vector<int> CountBits(int num)
+    {
+        vector<int> result(num + 1, 0);
+        result[0] = 0;
+
+        if (num > 0)
+        {
+            result[1] = 1;
+        }
+
+        int powerOfTwo = 2;
+        int current = 1;
+        while (current <= num)
+        {
+            for (int i = 0; i < powerOfTwo; i++)
+            {
+                current = i + powerOfTwo;
+                if (current > num)
+                {
+                    break;
+                }
+
+                result[current] = result[i] + 1;
+            }
+
+            powerOfTwo = powerOfTwo * 2;
+        }
+
+        return result;
+    }
 };

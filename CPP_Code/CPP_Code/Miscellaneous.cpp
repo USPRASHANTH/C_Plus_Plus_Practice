@@ -305,4 +305,328 @@ public:
             S.push(i);
         }
     }
+
+    // https://leetcode.com/problems/top-k-frequent-elements/
+    vector<int> TopKFrequent(vector<int>& nums, int k)
+    {
+        vector<int> result;
+        map<int, int> countMap;
+
+        int size = nums.size();
+        for (int i = 0; i < size; i++)
+        {
+            int current = nums[i];
+            map<int, int>::iterator it = countMap.find(current);
+
+            if (it == countMap.end()) // entry for key=current not found
+            {
+                countMap.insert(pair<int, int>(current, 1));
+            }
+            else
+            {
+                int frequency = (it->second) + 1;
+                countMap[current] = frequency;
+            }
+        }
+
+        map<int, vector<int>> frequencyList;
+        map<int, int>::iterator countMap_iterator;
+        for (countMap_iterator = countMap.begin(); countMap_iterator != countMap.end(); countMap_iterator++)
+        {
+            int current = (countMap_iterator->first);
+            int frequency = (countMap_iterator->second);
+
+            map<int, vector<int>>::iterator it = frequencyList.find(frequency);
+            if (it == frequencyList.end()) // entry for key=frequency not found
+            {
+                vector<int> temp;
+                temp.push_back(current);
+                frequencyList.insert(pair<int, vector<int>>(frequency, temp));
+            }
+            else
+            {
+                (it->second).push_back(current);
+            }
+        }
+
+        int count = k;
+        for (int i = size; i >= 0; i--)
+        {
+            map<int, vector<int>>::iterator it = frequencyList.find(i);
+            if (it != frequencyList.end())
+            {
+                vector<int> temp = (it->second);
+                int tempSize = temp.size();
+
+                for (int j = 0; (j < tempSize && count != 0); j++)
+                {
+                    result.push_back(temp[j]);
+                    count--;
+                }
+            }
+        }
+
+        return result;
+    }
+
+    // https://leetcode.com/problems/sort-characters-by-frequency/
+    string FrequencySort(string s)
+    {
+        string result;
+        map<char, int> countMap;
+
+        int size = s.length();
+        for (int i = 0; i < size; i++)
+        {
+            char current = s[i];
+            map<char, int>::iterator it = countMap.find(current);
+
+            if (it == countMap.end()) // entry for key=current not found
+            {
+                countMap.insert(pair<char, int>(current, 1));
+            }
+            else
+            {
+                int frequency = (it->second) + 1;
+                countMap[current] = frequency;
+            }
+        }
+
+        map<int, vector<char>> frequencyList;
+        map<char, int>::iterator countMap_iterator;
+        for (countMap_iterator = countMap.begin(); countMap_iterator != countMap.end(); countMap_iterator++)
+        {
+            char current = (countMap_iterator->first);
+            int frequency = (countMap_iterator->second);
+
+            map<int, vector<char>>::iterator it = frequencyList.find(frequency);
+            if (it == frequencyList.end()) // entry for key=frequency not found
+            {
+                vector<char> temp;
+                temp.push_back(current);
+                frequencyList.insert(pair<int, vector<char>>(frequency, temp));
+            }
+            else
+            {
+                (it->second).push_back(current);
+            }
+        }
+
+        for (int i = size; i >= 0; i--)
+        {
+            map<int, vector<char>>::iterator it = frequencyList.find(i);
+
+            if (it != frequencyList.end())
+            {
+                // For frequency=i, there are as many characters as in the temp vector.
+                vector<char> temp = (it->second);
+                int tempSize = temp.size();
+
+                // for each character in the temp vector, insert that character to result i times.
+                for (int j = 0; j < tempSize; j++)
+                {
+                    for (int k = 0; k < i; k++)
+                    {
+                        result.push_back(temp[j]);
+                    }
+                }
+            }
+        }
+
+        return result;
+    }
+
+    // https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
+    vector<int> TwoSum(vector<int>& numbers, int target)
+    {
+        vector<int> result;
+        int size = numbers.size();
+        int left = 0;
+        int right = size - 1;
+
+        while (left < right)
+        {
+            int currentSum = numbers[left] + numbers[right];
+            if (currentSum == target)
+            {
+                result.push_back(left + 1);
+                result.push_back(right + 1);
+                break;
+            }
+            else if (currentSum < target)
+            {
+                left++;
+            }
+            else
+            {
+                right--;
+            }
+        }
+
+        return result;
+    }
+
+    // https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/
+    int MaxProfit(vector<int>& prices)
+    {
+        int size = prices.size();
+        bool doWeHaveStock = false;
+        int profit = 0;
+        int buyingPrice;
+
+        for (int i = 1; i <= size; i++)
+        {
+            // If i-1 is the last day, and we have stock to sell, and stock price is greater than buying price, sell it now.
+            if (i == size)
+            {
+                if (doWeHaveStock && (buyingPrice < prices[i - 1]))
+                {
+                    profit = profit + (prices[i - 1] - buyingPrice);
+                    doWeHaveStock = false;
+                }
+            }
+
+            // price increased from i-1 to i.
+            else if (prices[i - 1] < prices[i])
+            {
+                // As of i-1, if we don't have stock, buy stock at i-1.
+                if (!doWeHaveStock)
+                {
+                    buyingPrice = prices[i - 1];
+                    doWeHaveStock = true;
+                }
+
+                // If we have stock already and i is not the last day, we should wait for stock value to increase. Do nothing now.
+            }
+            // price decreased from i-1 to i. As of i-1, if we have stock, sell stock at i-1. Otherwise do nothing.
+            else if (prices[i - 1] > prices[i])
+            {
+                if (doWeHaveStock)
+                {
+                    profit = profit + (prices[i - 1] - buyingPrice);
+                    doWeHaveStock = false;
+                }
+            }
+        }
+
+        return profit;
+    }
+
+    // https://leetcode.com/problems/count-numbers-with-unique-digits/
+    int CountNumbersWithUniqueDigits(int n)
+    {
+        if (n == 0)
+        {
+            // 10 to the power of 0 is 1. So, there are two numbers 0 and 1 with unique digits. But the condition is 0 <= x < 1. So only 0 satisfies the condition.
+            return 1;
+        }
+
+        int result = 10;
+        int iDigitNumbers = 9;
+        int uniqueDigitsPossible = 9;
+
+        for (int i = 2; (i <= n && uniqueDigitsPossible > 0); i++)
+        {
+            iDigitNumbers = iDigitNumbers * uniqueDigitsPossible;
+            result = result + iDigitNumbers;
+            uniqueDigitsPossible--;
+        }
+
+        return result;
+    }
+
+    // https://leetcode.com/problems/missing-number/
+    int MissingNumber(vector<int>& nums)
+    {
+        int n = nums.size();
+        int sumFromOntToN = (n * (n + 1)) / 2;
+        int actualSum = 0;
+
+        for (int i = 0; i < n; i++)
+        {
+            actualSum += nums[i];
+        }
+
+        return sumFromOntToN - actualSum;
+    }
+
+    int MissingNumber_SortedArray(vector<int>& nums)
+    {
+        int size = nums.size();
+        int left = 0;
+        int right = size - 1;
+        int missingNumber = -1;
+
+        while (left <= right)
+        {
+            int mid = left + ((right - left) / 2);
+
+            // If entire elements from left to right is correct, then missing element is right + 1
+            if (nums[left] == left && nums[right] == right)
+            {
+                missingNumber = nums[right] + 1;
+                break;
+            }
+            // If entire elements from left to right is wrong, then missing element is left - 1
+            else if (nums[left] != left && nums[right] != right)
+            {
+                missingNumber = nums[left] - 1;
+                break;
+            }
+            // If left half is correct, check right half
+            else if (nums[left] == left && nums[mid] == mid)
+            {
+                left = mid + 1;
+            }
+            // If right half is correct, check left half
+            else if (nums[right] != right && nums[mid] != mid)
+            {
+                right = mid - 1;
+            }
+        }
+
+        return missingNumber;
+    }
+
+    void KthSmallest_InSortedMatrix(vector<vector<int>>& matrix, vector<vector<bool>>& visited, vector<int>& sortedLinearArray, int rows, int columns, int i, int j)
+    {
+        if (visited[i][j])
+        {
+            return;
+        }
+
+        visited[i][j] = true;
+        sortedLinearArray.push_back(matrix[i][j]);
+
+        int next_i = i + 1;
+        int next_j = j + 1;
+
+        if (next_i < rows && next_j < columns)
+        {
+            if (matrix[next_i][j] < matrix[i][next_j])
+            {
+                KthSmallest_InSortedMatrix(matrix, visited, sortedLinearArray, rows, columns, next_i, j);
+                KthSmallest_InSortedMatrix(matrix, visited, sortedLinearArray, rows, columns, i, next_j);
+            }
+            else
+            {
+                KthSmallest_InSortedMatrix(matrix, visited, sortedLinearArray, rows, columns, i, next_j);
+                KthSmallest_InSortedMatrix(matrix, visited, sortedLinearArray, rows, columns, next_i, j);
+            }
+        }
+        else if (next_i < rows)
+        {
+
+        }
+        else if (next_j < columns)
+        {
+
+        }
+    }
+
+    // https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix/
+    int KthSmallest(vector<vector<int>>& matrix, int k)
+    {
+
+    }
 };

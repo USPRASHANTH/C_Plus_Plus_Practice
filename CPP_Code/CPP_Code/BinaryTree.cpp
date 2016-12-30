@@ -240,6 +240,53 @@ private:
         return isBST_Internal(node->right, inorderPredecessor);
     }
 
+    BinaryTree* ConvertBSTToSortedDLLInternal(BinaryTree* node)
+    {
+        if (node == NULL)
+        {
+            return NULL;
+        }
+
+        BinaryTree* leftDLL = ConvertBSTToSortedDLLInternal(node->left);
+        BinaryTree* rightDLL = ConvertBSTToSortedDLLInternal(node->right);
+
+        BinaryTree* leftDLL_last = NULL;
+        BinaryTree* rightDLL_last = NULL;
+
+        if (leftDLL != NULL)
+        {
+            leftDLL_last = leftDLL->left;
+
+            // Merge left DLL with node
+            leftDLL_last->right = node;
+            node->left = leftDLL_last;
+            leftDLL->left = node;
+            node->right = leftDLL;
+        }
+        else
+        {
+            node->left = node;
+            node->right = node;
+        }
+
+        // change leftDLL and leftDLL_last appropriately so that (new left DLL) means (old left DLL + node)
+        leftDLL = node->right;
+        leftDLL_last = node;
+
+        if (rightDLL != NULL)
+        {
+            rightDLL_last = rightDLL->left;
+
+            // Merge left DLL with right DLL
+            rightDLL->left = leftDLL_last;
+            leftDLL_last->right = rightDLL;
+            rightDLL_last->right = leftDLL;
+            leftDLL->left = rightDLL_last;
+        }
+
+        return leftDLL;
+    }
+
 public:
     int Height(BinaryTree* root)
     {
@@ -350,6 +397,26 @@ public:
         PostOrder(root);
         cout << endl << "PostOrder iterative" << endl;
         PostOrder_Iterative(root);
+        cout << endl;
+    }
+
+    void ConvertBSTToSortedDLL(BinaryTree* root)
+    {
+        if (root == NULL)
+        {
+            return;
+        }
+
+        BinaryTree* head = ConvertBSTToSortedDLLInternal(root);
+
+        // Print contents of DLL
+        BinaryTree* ptr = head;
+        do
+        {
+            cout << ptr->data << " ";
+            ptr = ptr->right;
+        } while (ptr != head);
+
         cout << endl;
     }
 };

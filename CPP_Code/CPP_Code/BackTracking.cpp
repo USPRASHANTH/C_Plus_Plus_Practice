@@ -37,6 +37,7 @@ private:
         if (index == length - 1)
         {
             PrintString(str);
+            return;
         }
 
         for (int j = index; j < length; j++)
@@ -242,6 +243,40 @@ private:
         cout << endl;
     }
 
+    void GenerateParenthesis_Recursive(int n, int openCount, int closeCount, int index, vector<char>& result)
+    {
+        if (openCount == n && closeCount == n)
+        {
+            PrintCharArray(result);
+            return;
+        }
+
+        if (openCount == closeCount)
+        {
+            // Cannot use close parenthisis at result[index] now.
+            result[index] = '(';
+            GenerateParenthesis_Recursive(n, openCount + 1, closeCount, index + 1, result);
+        }
+        else if (openCount > closeCount)
+        {
+            if (openCount == n)
+            {
+                // Cannot use open parenthisis at result[index] since we have reached the limit.
+                result[index] = ')';
+                GenerateParenthesis_Recursive(n, openCount, closeCount + 1, index + 1, result);
+            }
+            else
+            {
+                // Can use both open and close parenthisis at result[index] now.
+                result[index] = '(';
+                GenerateParenthesis_Recursive(n, openCount + 1, closeCount, index + 1, result);
+
+                result[index] = ')';
+                GenerateParenthesis_Recursive(n, openCount, closeCount + 1, index + 1, result);
+            }
+        }
+    }
+
 public:
     void PrintPermutations(string str)
     {
@@ -296,5 +331,18 @@ public:
         int size = input.size();
         multiset<int> result;
         FindSubsetSumHelper(input, size, sum, 0, result);
+    }
+
+    void GenerateParenthesis(int n)
+    {
+        vector<char> result;
+
+        for (int i = 0; i < n; i++)
+        {
+            result.push_back(' ');
+            result.push_back(' ');
+        }
+
+        GenerateParenthesis_Recursive(n, 0, 0, 0, result);
     }
 };

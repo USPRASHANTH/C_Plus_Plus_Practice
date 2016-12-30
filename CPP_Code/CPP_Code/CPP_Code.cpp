@@ -35,15 +35,408 @@ int main()
     cout << my_map.find(3)->second << endl;
     //*/
 
-    // Backtracking Algorithms
     BackTracking utils;
+    utils.GenerateParenthesis(3);
+    cout << "---" << endl;
+    utils.GenerateParenthesis(2);
+    cout << "---" << endl;
+    utils.GenerateParenthesis(1);
+    cout << "---" << endl;
+    utils.GenerateParenthesis(4);
+    cout << "---" << endl;
+
     /*
+    // https://leetcode.com/problems/add-two-numbers-ii/
+    LinkedListUtils utils;
+    LinkedList* num1;
+    LinkedList* num2;
+    LinkedList* result;
+
+    num1 = utils.GetLinkedList(456);
+    num2 = utils.GetLinkedList(15);
+    result = utils.AddNumbers(num1, num2);
+    utils.PrintLinkedListNumber(result);
+
+    num1 = utils.GetLinkedList(7);
+    num2 = utils.GetLinkedList(105);
+    result = utils.AddNumbers(num1, num2);
+    utils.PrintLinkedListNumber(result);
+
+    num1 = utils.GetLinkedList(999);
+    num2 = utils.GetLinkedList(1);
+    result = utils.AddNumbers(num1, num2);
+    utils.PrintLinkedListNumber(result);
+
+    num1 = utils.GetLinkedList(456);
+    num2 = utils.GetLinkedList(996);
+    result = utils.AddNumbers(num1, num2);
+    utils.PrintLinkedListNumber(result);
+
+    num1 = utils.GetLinkedList(46);
+    num2 = utils.GetLinkedList(195);
+    result = utils.AddNumbers(num1, num2);
+    utils.PrintLinkedListNumber(result);
+    //*/
+
+    /*
+    AlgorithmUtils utils;
+    vector<int> input;
+    input.push_back(0);
+    input.push_back(2);
+    input.push_back(3);
+    input.push_back(1);
+    input.push_back(4);
+    input.push_back(7);
+    input.push_back(5);
+    cout << "Missing element = " << utils.MissingNumber(input);
+    cout << endl;
+    input.clear();
+
+    input.push_back(2);
+    input.push_back(3);
+    input.push_back(0);
+    input.push_back(5);
+    input.push_back(4);
+    input.push_back(6);
+    cout << "Missing element = " << utils.MissingNumber(input);
+    cout << endl;
+    input.clear();
+
+    input.push_back(0);
+    input.push_back(1);
+    input.push_back(4);
+    input.push_back(2);
+    input.push_back(5);
+    cout << "Missing element = " << utils.MissingNumber(input);
+    cout << endl;
+    input.clear();
+
+    input.push_back(0);
+    input.push_back(6);
+    input.push_back(1);
+    input.push_back(3);
+    input.push_back(4);
+    input.push_back(2);
+    input.push_back(5);
+    cout << "Missing element = " << utils.MissingNumber(input);
+    cout << endl;
+    input.clear();
+
+    input.push_back(1);
+    input.push_back(4);
+    input.push_back(2);
+    input.push_back(3);
+    input.push_back(6);
+    input.push_back(5);
+    cout << "Missing element = " << utils.MissingNumber(input);
+    cout << endl;
+    input.clear();
+
+    input.push_back(1);
+    input.push_back(2);
+    cout << "Missing element = " << utils.MissingNumber(input);
+    cout << endl;
+    input.clear();
+
+    input.push_back(2);
+    input.push_back(0);
+    cout << "Missing element = " << utils.MissingNumber(input);
+    cout << endl;
+    input.clear();
+
+    input.push_back(0);
+    input.push_back(1);
+    cout << "Missing element = " << utils.MissingNumber(input);
+    cout << endl;
+    input.clear();
+
+    input.push_back(1);
+    cout << "Missing element = " << utils.MissingNumber(input);
+    cout << endl;
+    input.clear();
+
+    input.push_back(0);
+    cout << "Missing element = " << utils.MissingNumber(input);
+    cout << endl;
+    input.clear();
+    //*/
+
+    /*
+    AlgorithmUtils utils;
+    cout << "n=0 -> " << utils.CountNumbersWithUniqueDigits(0) << endl;
+    cout << "n=1 -> " << utils.CountNumbersWithUniqueDigits(1) << endl;
+    cout << "n=2 -> " << utils.CountNumbersWithUniqueDigits(2) << endl;
+    cout << "n=3 -> " << utils.CountNumbersWithUniqueDigits(3) << endl;
+    cout << "n=4 -> " << utils.CountNumbersWithUniqueDigits(4) << endl;
+    cout << "n=5 -> " << utils.CountNumbersWithUniqueDigits(5) << endl;
+    cout << "n=6 -> " << utils.CountNumbersWithUniqueDigits(6) << endl;
+    cout << "n=7 -> " << utils.CountNumbersWithUniqueDigits(7) << endl;
+    cout << "n=8 -> " << utils.CountNumbersWithUniqueDigits(8) << endl;
+    cout << "n=9 -> " << utils.CountNumbersWithUniqueDigits(9) << endl;
+    cout << "n=10 -> " << utils.CountNumbersWithUniqueDigits(10) << endl;
+    cout << "n=11 -> " << utils.CountNumbersWithUniqueDigits(11) << endl;
+    cout << "n=12 -> " << utils.CountNumbersWithUniqueDigits(12) << endl;
+    //*/
+
+    /*
+    // https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/
+    AlgorithmUtils utils;
+    vector<int> prices;
+
+    prices.push_back(7);
+    prices.push_back(3);
+    prices.push_back(7);
+    prices.push_back(3);
+    prices.push_back(7);
+    prices.push_back(3);
+    prices.push_back(7);
+    cout << utils.MaxProfit(prices) << endl;
+
+    prices.clear();
+    prices.push_back(7);
+    prices.push_back(3);
+    prices.push_back(7);
+    prices.push_back(3);
+    prices.push_back(7);
+    prices.push_back(3);
+    cout << utils.MaxProfit(prices) << endl;
+
+    prices.clear();
+    prices.push_back(3);
+    prices.push_back(7);
+    prices.push_back(3);
+    prices.push_back(7);
+    prices.push_back(3);
+    cout << utils.MaxProfit(prices) << endl;
+
+    prices.clear();
+    prices.push_back(10);
+    prices.push_back(3);
+    prices.push_back(4);
+    prices.push_back(7);
+    prices.push_back(8);
+    prices.push_back(5);
+    cout << utils.MaxProfit(prices) << endl;
+
+    prices.clear();
+    prices.push_back(7);
+    prices.push_back(8);
+    prices.push_back(3);
+    prices.push_back(9);
+    prices.push_back(4);
+    cout << utils.MaxProfit(prices) << endl;
+
+    prices.clear();
+    prices.push_back(7);
+    prices.push_back(9);
+    cout << utils.MaxProfit(prices) << endl;
+
+    prices.clear();
+    prices.push_back(7);
+    prices.push_back(3);
+    cout << utils.MaxProfit(prices) << endl;
+
+    prices.clear();
+    prices.push_back(7);
+    cout << utils.MaxProfit(prices) << endl;
+    //*/
+
+    /*
+    // https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
+    vector<int> input;
+    input.push_back(1);
+    input.push_back(2);
+    input.push_back(7);
+    input.push_back(8);
+    input.push_back(11);
+    input.push_back(15);
+    AlgorithmUtils utils;
+    vector<int> result;
+
+    result = utils.TwoSum(input, 8);
+    int size = result.size();
+    for (int i = 0; i < size; i++)
+    {
+        cout << result[i] << "\t";
+    }
+    cout << endl << "---" << endl;
+
+    result = utils.TwoSum(input, 9);
+    size = result.size();
+    for (int i = 0; i < size; i++)
+    {
+        cout << result[i] << "\t";
+    }
+    cout << endl << "---" << endl;
+
+    result = utils.TwoSum(input, 10);
+    size = result.size();
+    for (int i = 0; i < size; i++)
+    {
+        cout << result[i] << "\t";
+    }
+    cout << endl << "---" << endl;
+
+    result = utils.TwoSum(input, 19);
+    size = result.size();
+    for (int i = 0; i < size; i++)
+    {
+        cout << result[i] << "\t";
+    }
+    cout << endl << "---" << endl;
+
+    result = utils.TwoSum(input, 14);
+    size = result.size();
+    for (int i = 0; i < size; i++)
+    {
+        cout << result[i] << "\t";
+    }
+    cout << endl << "---" << endl;
+
+    result = utils.TwoSum(input, 26);
+    size = result.size();
+    for (int i = 0; i < size; i++)
+    {
+        cout << result[i] << "\t";
+    }
+    cout << endl << "---" << endl;
+
+    result = utils.TwoSum(input, 36);
+    size = result.size();
+    for (int i = 0; i < size; i++)
+    {
+        cout << result[i] << "\t";
+    }
+    cout << endl << "---" << endl;
+
+    result = utils.TwoSum(input, -6);
+    size = result.size();
+    for (int i = 0; i < size; i++)
+    {
+        cout << result[i] << "\t";
+    }
+    cout << endl << "---" << endl;
+    //*/
+
+    /*
+    // https://leetcode.com/problems/sort-characters-by-frequency/
+    AlgorithmUtils utils;
+    cout << utils.FrequencySort("tree") << endl;
+    cout << utils.FrequencySort("ccaaa") << endl;
+    cout << utils.FrequencySort("Aabb") << endl;
+    cout << utils.FrequencySort("cccaaa") << endl;
+    //*/
+
+    /*
+    // https://leetcode.com/problems/top-k-frequent-elements/
+    vector<int> input;
+    input.push_back(1);
+    input.push_back(1);
+    input.push_back(2);
+    input.push_back(2);
+    input.push_back(1);
+    input.push_back(3);
+    input.push_back(4);
+    input.push_back(3);
+
+    vector<int> result;
+    AlgorithmUtils utils;
+    result = utils.TopKFrequent(input, 4);
+
+    int size = result.size();
+    for (int i = 0; i < size; i++)
+    {
+        cout << result[i] << "\t";
+    }
+
+    cout << endl << "---" << endl;
+    result = utils.TopKFrequent(input, 5);
+
+    size = result.size();
+    for (int i = 0; i < size; i++)
+    {
+        cout << result[i] << "\t";
+    }
+
+    cout << endl << "---" << endl;
+    result = utils.TopKFrequent(input, 3);
+
+    size = result.size();
+    for (int i = 0; i < size; i++)
+    {
+        cout << result[i] << "\t";
+    }
+
+    cout << endl << "---" << endl;
+    result = utils.TopKFrequent(input, 2);
+
+    size = result.size();
+    for (int i = 0; i < size; i++)
+    {
+        cout << result[i] << "\t";
+    }
+
+    cout << endl << "---" << endl;
+    result = utils.TopKFrequent(input, 1);
+
+    size = result.size();
+    for (int i = 0; i < size; i++)
+    {
+        cout << result[i] << "\t";
+    }
+
+    cout << endl << "---" << endl;
+    //*/
+
+    /*
+    // https://leetcode.com/problems/counting-bits/
+    BitMagic bitMagic;
+    vector<int> result = bitMagic.CountBits(16);
+
+    int size = result.size();
+    for (int i = 0; i < size; i++)
+    {
+        cout << i << "\t" << result[i] << endl;
+    }
+    //*/
+
+    /*
+    // BST to sorted DLL
+    BinaryTree BT_7;
+    BinaryTree BT_5;
+    BinaryTree BT_9;
+    BinaryTree BT_3;
+    BinaryTree BT_6;
+    BinaryTree BT_8;
+    BT_7.data = 7;
+    BT_5.data = 5;
+    BT_9.data = 9;
+    BT_3.data = 3;
+    BT_6.data = 6;
+    BT_8.data = 8;
+
+    BT_8.left = NULL; BT_8.right = NULL;
+    BT_9.left = &BT_8; BT_9.right = NULL;
+    BT_3.left = NULL; BT_3.right = NULL;
+    BT_6.left = NULL; BT_6.right = NULL;
+    BT_5.left = &BT_3; BT_5.right = &BT_6;
+    BT_7.left = &BT_5; BT_7.right = &BT_9;
+
+    BinaryTreeUtlis utils;
+    BinaryTree* root = &BT_7;
+    utils.ConvertBSTToSortedDLL(root);
+    //*/
+
+    // Backtracking Algorithms
+    /*
+    BackTracking utils;
+
     vector<int> input;
     input.push_back(2);
     input.push_back(5);
     input.push_back(3);
     utils.FindSubsetSum(input, 10);
-    //*/
+
     vector<char> input;
     input.push_back('A');
     input.push_back('B');
@@ -52,6 +445,7 @@ int main()
     input.push_back('E');
     utils.PrintCombinations_WithRepetitions(input, 2);
     // utils.PrintCombinations_WithoutRepetitions(input, 2);
+    //*/
 
     /*
     string str = "ABCD";
