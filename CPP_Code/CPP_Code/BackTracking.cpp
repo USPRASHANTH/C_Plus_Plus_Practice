@@ -48,6 +48,103 @@ private:
         }
     }
 
+    int GetRightMostCharThatIsSmallerThanItsNext(string str, int n)
+    {
+        int i = n - 1;
+        while (i >= 0)
+        {
+            if (str[i] < str[i + 1])
+            {
+                return i;
+            }
+
+            i--;
+        }
+
+        return -1;
+    }
+
+    int GetCeilindex(string str, int n, int l, char first)
+    {
+        int ceilIndex = l;
+
+        for (int i = l + 1; i < n; i++)
+        {
+            if (str[i] > first && str[i] < str[ceilIndex])
+            {
+                ceilIndex = i;
+            }
+        }
+
+        return ceilIndex;
+    }
+
+    void PrintPermutationsInSortedOrder_Iterative(string str, int n)
+    {
+        sort(str.begin(), str.end());
+        bool isFinished = false;
+
+        while (!isFinished)
+        {
+            PrintString(str);
+
+            int r = GetRightMostCharThatIsSmallerThanItsNext(str, n);
+            if (r == -1)
+            {
+                isFinished = true;
+            }
+            else
+            {
+                int ceilIndex = GetCeilindex(str, n, r + 1, str[r]);
+
+                char temp = str[ceilIndex];
+                str[ceilIndex] = str[r];
+                str[r] = temp;
+
+                // Sort all characters after r
+                sort(str.begin() + r + 1, str.end());
+            }
+        }
+    }
+
+    void PrintPermutationsInSortedOrder_Recursive(string str, int n, int start)
+    {
+        PrintString(str);
+        while (true)
+        {
+            int r = GetRightMostCharThatIsSmallerThanItsNext(str, n);
+            if (r < start)
+            {
+                return;
+            }
+
+            // Sort all characters after r
+            sort(str.begin() + r + 1, str.end());
+
+            for (int i = r + 1; i < n; i++)
+            {
+                if (str[r] > str[i])
+                {
+                    continue;
+                }
+
+                string str_copy = str;
+
+                // swap char and index r and char at index i and recur
+                char temp = str[i];
+                str[i] = str[r];
+                str[r] = temp;
+
+                // Sort all characters after r
+                sort(str.begin() + r + 1, str.end());
+
+                PrintPermutationsInSortedOrder_Recursive(str, n, r + 1);
+
+                // str = str_copy;
+            }
+        }
+    }
+
     void PopulateT9Map()
     {
         vector<char> T9_2;
@@ -281,6 +378,14 @@ public:
     void PrintPermutations(string str)
     {
         PrintPermutationsHelper(str, 0, str.length());
+    }
+
+    void PrintPermutationsInSortedOrder(string str)
+    {
+        // sort(str.begin(), str.end());
+        // qsort(str, n, sizeof(char));
+        // PrintPermutationsInSortedOrder_Recursive(str, str.length(), 0);
+        PrintPermutationsInSortedOrder_Iterative(str, str.length());
     }
 
     void PrintT9Combinations(vector<int> inputArray)

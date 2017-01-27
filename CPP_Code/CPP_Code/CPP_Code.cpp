@@ -35,6 +35,117 @@ int main()
     cout << my_map.find(3)->second << endl;
     //*/
 
+    AlgorithmUtils utils;
+    cout << utils.LastAndSecondLast("HACK") << endl;
+    cout << utils.LastAndSecondLast("LAST") << endl;
+    cout << utils.LastAndSecondLast("NZ") << endl;
+    cout << utils.LastAndSecondLast("A") << endl;
+
+    /*
+    // GetIndexOfElement_InSortedRotatedArray
+    AlgorithmUtils utils;
+    vector<int> input;
+    input.push_back(16);
+    input.push_back(18);
+    input.push_back(20);
+    input.push_back(1);
+    input.push_back(2);
+    input.push_back(3);
+    input.push_back(5);
+    input.push_back(8);
+    input.push_back(10);
+    input.push_back(11);
+    cout << "Expected = 0. Actual = " << utils.GetIndexOfElement_InSortedRotatedArray(input, 16) << endl;
+    cout << "Expected = 1. Actual = " << utils.GetIndexOfElement_InSortedRotatedArray(input, 18) << endl;
+    cout << "Expected = 2. Actual = " << utils.GetIndexOfElement_InSortedRotatedArray(input, 20) << endl;
+    cout << "Expected = 3. Actual = " << utils.GetIndexOfElement_InSortedRotatedArray(input, 1) << endl;
+    cout << "Expected = 4. Actual = " << utils.GetIndexOfElement_InSortedRotatedArray(input, 2) << endl;
+    cout << "Expected = 5. Actual = " << utils.GetIndexOfElement_InSortedRotatedArray(input, 3) << endl;
+    cout << "Expected = 6. Actual = " << utils.GetIndexOfElement_InSortedRotatedArray(input, 5) << endl;
+    cout << "Expected = 7. Actual = " << utils.GetIndexOfElement_InSortedRotatedArray(input, 8) << endl;
+    cout << "Expected = 8. Actual = " << utils.GetIndexOfElement_InSortedRotatedArray(input, 10) << endl;
+    cout << "Expected = 9. Actual = " << utils.GetIndexOfElement_InSortedRotatedArray(input, 11) << endl;
+    cout << "Expected = -1. Actual = " << utils.GetIndexOfElement_InSortedRotatedArray(input, 7) << endl;
+    //*/
+
+    /*
+    // GetStartingIndexOfSortedRotatedArray
+    AlgorithmUtils utils;
+    vector<int> input;
+    input.push_back(16);
+    input.push_back(18);
+    input.push_back(20);
+    input.push_back(1);
+    input.push_back(2);
+    input.push_back(3);
+    input.push_back(5);
+    input.push_back(8);
+    input.push_back(10);
+    input.push_back(11);
+    cout << "Expected = 3. Actual = " << utils.GetStartingIndexOfSortedRotatedArray(input) << endl;
+
+    input.clear();
+    input.push_back(1);
+    input.push_back(2);
+    input.push_back(3);
+    input.push_back(5);
+    input.push_back(8);
+    input.push_back(10);
+    input.push_back(11);
+    cout << "Expected = 0. Actual = " << utils.GetStartingIndexOfSortedRotatedArray(input) << endl;
+
+    input.clear();
+    input.push_back(2);
+    input.push_back(3);
+    input.push_back(5);
+    input.push_back(8);
+    input.push_back(10);
+    input.push_back(11);
+    input.push_back(1);
+    cout << "Expected = 6. Actual = " << utils.GetStartingIndexOfSortedRotatedArray(input) << endl;
+    //*/
+
+    /*
+    BackTracking utils;
+    utils.PrintPermutationsInSortedOrder("111");
+    cout << "---" << endl;
+    utils.PrintPermutationsInSortedOrder("113");
+    cout << "---" << endl;
+    utils.PrintPermutationsInSortedOrder("1423");
+    cout << "---" << endl;
+    utils.PrintPermutationsInSortedOrder("14213");
+    //*/
+
+    /*
+    AlgorithmUtils utils;
+    vector<int> input;
+    input.push_back(1);
+    input.push_back(1);
+    input.push_back(0);
+    input.push_back(1);
+    input.push_back(0);
+    input.push_back(1);
+    input.push_back(1);
+    input.push_back(0);
+    input.push_back(0);
+    input.push_back(1);
+    utils.FindZeroes(input, input.size(), 2);
+
+    input.clear();
+    input.push_back(1);
+    input.push_back(0);
+    input.push_back(0);
+    input.push_back(1);
+    input.push_back(1);
+    input.push_back(0);
+    input.push_back(1);
+    input.push_back(0);
+    input.push_back(1);
+    input.push_back(1);
+    utils.FindZeroes(input, input.size(), 2);
+    //*/
+
+    /*
     BackTracking utils;
     utils.GenerateParenthesis(3);
     cout << "---" << endl;
@@ -44,6 +155,7 @@ int main()
     cout << "---" << endl;
     utils.GenerateParenthesis(4);
     cout << "---" << endl;
+    //*/
 
     /*
     // https://leetcode.com/problems/add-two-numbers-ii/

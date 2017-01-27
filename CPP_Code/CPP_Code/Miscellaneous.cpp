@@ -588,6 +588,251 @@ public:
         return missingNumber;
     }
 
+    // Find smallest in sorted and rotated array
+    int GetStartingIndexOfSortedRotatedArray(vector<int> input)
+    {
+        int size = input.size();
+        int low = 0;
+        int high = size - 1;
+        int mid = low + ((high - low) / 2);
+
+        while (low != mid)
+        {
+            if (input[low] < input[high])
+            {
+                return low;
+            }
+
+            if (input[mid] < input[high]) // right half is sorted
+            {
+                high = mid;
+                mid = low + ((high - low) / 2);
+            }
+            else // left half is sorted
+            {
+                low = mid;
+                mid = low + ((high - low) / 2);
+            }
+        }
+
+        return high;
+    }
+
+    string LastAndSecondLast(string word)
+    {
+        int size = word.size();
+        string result = "";
+
+        if (size > 1)
+        {
+            result = result + word[size - 1] + " " + word[size - 2];
+        }
+
+        return result;
+    }
+
+    vector<string> isTrue(vector<vector<int>> input)
+    {
+        string yes = "YES";
+        string no = "NO";
+
+        int numberOfTestCases = input.size();
+        vector<string> result;
+
+        for (int i = 0; i < numberOfTestCases; i++)
+        {
+            vector<int> testCase = input[i];
+            int tempA = testCase[0];
+            int tempB = testCase[1];
+
+            if (tempB > tempA)
+            {
+                int temp = tempA;
+                tempA = tempB;
+                tempB = temp;
+            }
+
+            int capacityOfA = tempA;
+            int capacityOfB = tempB;
+            int c = testCase[2];
+
+            // Base cases
+            if (c > capacityOfA && c > capacityOfB)
+            {
+                result.push_back(no);
+                continue;
+            }
+            if (c == capacityOfA || c == capacityOfB)
+            {
+                result.push_back(yes);
+                continue;
+            }
+
+            int currentValueOfA = capacityOfA;
+            int currentValueOfB = 0;
+
+            while(true)
+            {
+                if (c == currentValueOfA || c == currentValueOfB)
+                {
+                    result.push_back(yes);
+                    break;
+                }
+
+                if ((currentValueOfA == capacityOfA) && (currentValueOfB == 0))
+                {
+                    result.push_back(no);
+                    break;
+                }
+
+                // Fill the smaller container if it has room for more water and if bigger container has water.
+                if (currentValueOfA != 0 && currentValueOfB < capacityOfB)
+                {
+                    int diff = capacityOfB - currentValueOfB;
+                    if (currentValueOfA > diff)
+                    {
+                        currentValueOfA = currentValueOfA - diff;
+                        currentValueOfB = currentValueOfB + diff;
+                    }
+                    else
+                    {
+                        currentValueOfB = currentValueOfB + currentValueOfA;
+                        currentValueOfA = 0;
+                    }
+                }
+                else if (currentValueOfB == capacityOfB)
+                {
+                    currentValueOfB = 0;
+                }
+                else if (currentValueOfA == 0)
+                {
+                    currentValueOfA = capacityOfA;
+                }
+            }
+        }
+
+        return result;
+    }
+
+    int GetIndexOfElement_InSortedRotatedArray(vector<int> input, int key)
+    {
+        int size = input.size();
+        int low = 0;
+        int high = size - 1;
+        int mid = low + ((high - low) / 2);
+
+        while (low != mid)
+        {
+            if (input[low] == key)
+            {
+                return low;
+            }
+
+            if (input[mid] == key)
+            {
+                return mid;
+            }
+
+            if (input[high] == key)
+            {
+                return high;
+            }
+
+            if (input[mid] < input[high]) // right half is sorted
+            {
+                if ((input[mid] < key) && (key < input[high])) // key is in right half
+                {
+                    low = mid + 1;
+                    mid = low + ((high - low) / 2);
+                }
+                else // key is in left half
+                {
+                    high = mid - 1;
+                    mid = low + ((high - low) / 2);
+                }
+            }
+            else // left half is sorted
+            {
+                if ((input[low] < key) && (key < input[mid])) // key is in left half
+                {
+                    high = mid - 1;
+                    mid = low + ((high - low) / 2);
+                }
+                else // key is in right half
+                {
+                    low = mid + 1;
+                    mid = low + ((high - low) / 2);
+                }
+            }
+        }
+
+        if (input[low] == key)
+        {
+            return low;
+        }
+
+        if (input[high] == key)
+        {
+            return high;
+        }
+
+        return -1;
+    }
+
+    // http://www.geeksforgeeks.org/find-zeroes-to-be-flipped-so-that-number-of-consecutive-1s-is-maximized/
+    // m is maximum of number zeroes allowed to flip
+    // n is size of array
+    void FindZeroes(vector<int> arr, int n, int m)
+    {
+        // Left and right indexes of current window
+        int wL = 0, wR = 0;
+
+        // Left index and size of the widest window 
+        int bestL = 0, bestWindow = 0;
+
+        // Count of zeroes in current window
+        int zeroCount = 0;
+
+        // While right boundary of current window doesn't cross 
+        // right end
+        while (wR < n)
+        {
+            // If zero count of current window is less than m,
+            // widen the window toward right
+            if (zeroCount <= m)
+            {
+                if (arr[wR] == 0)
+                    zeroCount++;
+                wR++;
+            }
+
+            // If zero count of current window is more than m,
+            // reduce the window from left
+            if (zeroCount > m)
+            {
+                if (arr[wL] == 0)
+                    zeroCount--;
+                wL++;
+            }
+
+            // Updqate widest window if this window size is more
+            if (wR - wL > bestWindow)
+            {
+                bestWindow = wR - wL;
+                bestL = wL;
+            }
+        }
+
+        // Print positions of zeroes in the widest window
+        for (int i = 0; i<bestWindow; i++)
+        {
+            if (arr[bestL + i] == 0)
+                cout << bestL + i << " ";
+        }
+
+        cout << endl;
+    }
+
     void KthSmallest_InSortedMatrix(vector<vector<int>>& matrix, vector<vector<bool>>& visited, vector<int>& sortedLinearArray, int rows, int columns, int i, int j)
     {
         if (visited[i][j])
